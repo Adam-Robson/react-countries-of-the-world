@@ -1,0 +1,11 @@
+
+footer {
+    position: sticky;
+    bottom: 0;
+    padding: 7px 20px;
+    font-size: 0.8em;
+    display: flex;
+    justify-content: flex-end;
+    color:aliceblue;
+    background-color: rgb(80, 104, 107);
+}
