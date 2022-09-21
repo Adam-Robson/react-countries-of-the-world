@@ -2,4 +2,6 @@ main {
     height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
+    background-color: aliceblue;
+    color: rgb(80, 104, 107)
 }
