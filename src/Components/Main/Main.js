@@ -1,3 +1,4 @@
+//eslint-disable-next-line
 import Showcase from '../Showcase/Showcase';
 
 export default function Main() {
