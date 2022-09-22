@@ -1,14 +1,14 @@
 .App {
   text-align: center;
 }
-.countries-list {
+.allCountries {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
 }
 
-.country {
+.countryContainer {
   width: 200px;
   height: 200px;
   display: flex;

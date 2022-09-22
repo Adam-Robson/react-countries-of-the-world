@@ -1,0 +1,11 @@
+.load {
+  animation: pulse-animation 2s infinite;
+  font-size: 2rem;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 100%;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

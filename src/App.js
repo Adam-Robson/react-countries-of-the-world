@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
-import './App.css';
 import { getCountries } from './services/getCountries';
+import Load from './Components/Load/Load';
+
+import './App.css';
 
 function App() {
   const [countries, setCountries] = useState([]);
-  const [continents, setContinents] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [continent, setContinent] = useState([]);
+  const [continents, setContinents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -14,6 +17,7 @@ function App() {
       setCountries(response);
       const continentsEach = [...new Set(response.map((cont) => cont.continent))];
       setContinents(continentsEach);
+      setTimeout(() => setLoading(false), 2500);
     };
     fetchCountries();
   }, []);
@@ -21,39 +25,50 @@ function App() {
   const countriesFilter = () => {
     const countriesFilterii = countries.filter(
       (cont) =>
-        (continent === 'all' ? true : cont.continent === continent) && cont.name.toLowerCase()
+        (continent === 'all' ? true : cont.continent === continent) &&
+        cont.name.toLowerCase().includes(query)
     );
     return countriesFilterii;
   };
 
   return (
-    <>
-      <div className="App">
-        <h2>Countries of Earth</h2>
-        <select className="dropdown" onChange={(event) => setContinents(event.target.value)}>
+    <div className="App">
+      <h2>Countries of Earth</h2>
+      <div className="sort">
+        <input
+          type="text"
+          value={query}
+          onChange={(event) => setQuery(event.target.value.toLowerCase())}
+        />
+        <select className="dropdown" onChange={(event) => setContinent(event.target.value)}>
           <option value="all">all</option>
           {!!continents.length &&
-            continents.map((cont) => (
-              <option key={cont} value={cont}>
-                {cont}
-              </option>
-            ))}
+            continents.map(
+              (cont) =>
+                !!cont && (
+                  <option key={cont} value={cont}>
+                    {cont}
+                  </option>
+                )
+            )}
         </select>
       </div>
       <div className="allCountries">
-        {countriesFilter().map((cont) => (
-          <div className="country" key={cont.name}>
-            <h3>{cont.name}</h3>
-            <img
-              src={`https://flagcdn.com/72x54/${cont.iso2.toLowerCase()}.png`}
-              width="60"
-              height="45"
-              alt={cont.name}
-            />
-          </div>
-        ))}
+        {loading && <Load />}
+        {!loading &&
+          countriesFilter().map((cont) => (
+            <div className="countryContainer" key={cont.name}>
+              <h3>{cont.name}</h3>
+              <img
+                src={`https://flagcdn.com/72x54/${cont.iso2.toLowerCase()}.png`}
+                width="72"
+                height="54"
+                alt={cont.name}
+              />
+            </div>
+          ))}
       </div>
-    </>
+    </div>
   );
 }
 
