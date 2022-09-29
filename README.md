@@ -62,4 +62,4 @@ Users can filter by continent	4
 Stretch (up to 3 points)
 Add a loading state (+1)
 Allow users to query by country name (+1)
-Allow users to sort by name (+1
+Allow users to sort by name (+1)

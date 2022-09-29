@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
   const [countries, setCountries] = useState([]);
-  const [continent, setContinent] = useState([]);
+  const [continent, setContinent] = useState('all');
   const [continents, setContinents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState('');
