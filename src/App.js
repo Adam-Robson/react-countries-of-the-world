@@ -1,27 +1,6 @@
-import { useState, useEffect } from 'react';
-import { getCountries } from './services/getCountries';
-import Load from './Components/Load/Load';
-
 import './App.css';
 
-function App() {
-  const [countries, setCountries] = useState([]);
-  const [continent, setContinent] = useState('all');
-  const [continents, setContinents] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [query, setQuery] = useState('');
-
-  useEffect(() => {
-    const fetchCountries = async () => {
-      const response = await getCountries();
-      setCountries(response);
-      const continentsEach = [...new Set(response.map((cont) => cont.continent))];
-      setContinents(continentsEach);
-      setTimeout(() => setLoading(false), 2500);
-    };
-    fetchCountries();
-  }, []);
-
+function App({ countries, continent, setContinent, continents, query, setQuery }) {
   const countriesFilter = () => {
     const countriesFilterii = countries.filter(
       (cont) =>
@@ -30,6 +9,7 @@ function App() {
     );
     return countriesFilterii;
   };
+  countriesFilter();
 
   return (
     <div className="App">
@@ -52,21 +32,6 @@ function App() {
                 )
             )}
         </select>
-      </div>
-      <div className="allCountries">
-        {loading && <Load />}
-        {!loading &&
-          countriesFilter().map((cont) => (
-            <div className="countryContainer" key={cont.name}>
-              <h3>{cont.name}</h3>
-              <img
-                src={`https://flagcdn.com/72x54/${cont.iso2.toLowerCase()}.png`}
-                width="72"
-                height="54"
-                alt={cont.name}
-              />
-            </div>
-          ))}
       </div>
     </div>
   );
