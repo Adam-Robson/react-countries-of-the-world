@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchCountries } from '../services/countries';
+import { fetchCountries } from '../../services/fetchCountries';
 
 export function useCountries() {
   const [countries, setCountries] = useState([]);
