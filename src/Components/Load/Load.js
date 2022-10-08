@@ -1,5 +1,7 @@
-import './Load.css';
+import React from 'react';
 
-export default function Load() {
-  return <div className="load">Loading...</div>;
+import './Loader.css';
+
+export default function Loader() {
+  return <div className="loader">Loading...</div>;
 }

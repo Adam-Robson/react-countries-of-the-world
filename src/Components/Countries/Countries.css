@@ -1,6 +1,7 @@
 Countries {
   text-align: center;
 }
+
 .allCountries {
   display: flex;
   flex-wrap: wrap;

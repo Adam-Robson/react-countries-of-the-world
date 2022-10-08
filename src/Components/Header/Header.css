@@ -1,16 +1,4 @@
-.allCountries {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.countryContainer {
-  width: 200px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
+header {
+    font-size: 1.5em;
+    margin-top: 40px;
 }

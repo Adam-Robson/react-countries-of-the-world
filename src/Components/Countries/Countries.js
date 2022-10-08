@@ -1,49 +1,52 @@
-import './Countries.css';
-import { useState } from 'react';
-function Countries(countries, continents) {
-  const [continent, setContinent] = useState([]);
-  const [query, setQuery] = useState([]);
+import React from 'react';
+import { useCountries } from '../../../hooks/useCountries';
+import Country from '../../Country/Country';
+import Loader from '../../Loader/Loader';
 
-  const countriesFilter = () => {
-    const dataSet = countries.filter(
-      (data) =>
-        (continent === 'all' ? true : data.continent === continent) &&
-        data.name.toLowerCase().includes(query)
-    );
-    return dataSet;
-  };
+import './Home.css';
 
-  countriesFilter();
+export default function Countries() {
+
+  const {
+    filterCountries,
+    continent,
+    setContinent,
+    error,
+    query,
+    setQuery,
+    loading
+  } = useCountries();
 
   return (
-    <div className="Countries">
-      <h2>Earth Countries!</h2>
-      <div className="search-dropdown">
-        <input
-          type="text"
-          value={query}
-          onChange={(event) => {
-            return setQuery(event.target.value.toLowerCase());
-          }}
-        />
-        <select
-          className="continent-dropdown"
-          onChange={(event) => setContinent(event.target.value)}
-        >
-          <option value="all">all</option>
-          {!!continents.length &&
-            continents.map(
-              (resultContinent) =>
-                !!resultContinent && (
-                  <option key={resultContinent} value={resultContinent}>
-                    {resultContinent}
-                  </option>
-                )
-            )}
-        </select>
-      </div>
-    </div>
-  );
-}
-
-export default Countries;
+    <section className="countries-container">
+      <input
+        type="text"
+        placeholder="Search Countries..."
+        value={ query }
+        onChange={ (e) => setQuery(e.target.value.toLowerCase()) }
+      />
+      <select
+        value={ continent }
+        onChange={ (e) => {
+          setContinent(e.target.value);
+        } }
+      >
+        <option value="all">All Countries</option>
+        <option value="Africa">Africa</option>
+        <option value="Antarctica">Antarctica</option>
+        <option value="Asia">Asia</option>
+        <option value="Europe">Europe</option>
+        <option value="Oceania">Oceania</option>
+        <option value="North America">North America</option>
+        <option value="South America">South America</option>
+      </select>
+      <p className="error">{ error }</p>
+      <main>
+        { loading && <Loader /> }
+        {
+          !loading &&
+          filterCountries().map((country) => <Country key={ country.id } { ...country } />)
+        }
+      </main>
+    </section>
+  )
