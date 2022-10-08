@@ -1,11 +1,15 @@
-Countries {
-  text-align: center;
+main {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  flex-wrap: wrap;
+  background-image: url('');
 }
 
 .allCountries {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
   margin-top: 20px;
 }
 
@@ -13,8 +17,8 @@ Countries {
   width: 200px;
   height: 200px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-  text-align: center;
+  /* justify-content:space-between;
+  text-align: center; */
 }
