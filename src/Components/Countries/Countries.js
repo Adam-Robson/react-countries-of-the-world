@@ -7,7 +7,7 @@ import './Countries.css';
 export default function Countries() {
   const { filterCountries, continent, setContinent, error, query, setQuery, loading } =
     useCountries();
-
+  //add comment
   return (
     <section className="countries-container">
       <input
