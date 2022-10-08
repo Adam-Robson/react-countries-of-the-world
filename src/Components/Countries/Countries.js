@@ -1,24 +1,49 @@
-import React from 'react';
 import './Countries.css';
-import Load from '../Load/Load';
-import { countriesFilter } from './useCountries.js';
+import { useState } from 'react';
+function Countries(countries, continents) {
+  const [continent, setContinent] = useState([]);
+  const [query, setQuery] = useState([]);
 
-export default function Country({ loading }) {
+  const countriesFilter = () => {
+    const dataSet = countries.filter(
+      (data) =>
+        (continent === 'all' ? true : data.continent === continent) &&
+        data.name.toLowerCase().includes(query)
+    );
+    return dataSet;
+  };
+
+  countriesFilter();
+
   return (
-    <div className="allCountries">
-      {loading && <Load />}
-      {!loading &&
-        countriesFilter().map((cont) => (
-          <div className="countryContainer" key={cont.name}>
-            <h3>{cont.name}</h3>
-            <img
-              src={`https://flagcdn.com/72x54/${cont.iso2.toLowerCase()}.png`}
-              width="72"
-              height="54"
-              alt={cont.name}
-            />
-          </div>
-        ))}
+    <div className="Countries">
+      <h2>Earth Countries!</h2>
+      <div className="search-dropdown">
+        <input
+          type="text"
+          value={query}
+          onChange={(event) => {
+            return setQuery(event.target.value.toLowerCase());
+          }}
+        />
+        <select
+          className="continent-dropdown"
+          onChange={(event) => setContinent(event.target.value)}
+        >
+          <option value="all">all</option>
+          {!!continents.length &&
+            continents.map(
+              (resultContinent) =>
+                !!resultContinent && (
+                  <option key={resultContinent} value={resultContinent}>
+                    {resultContinent}
+                  </option>
+                )
+            )}
+        </select>
+      </div>
     </div>
   );
 }
+
+export default Countries;
