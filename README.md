@@ -1,53 +1,65 @@
-# Alchemy React Base Template
+# BUILD ONE FEATURE AT A TIME
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## label Components
 
-Use this template for all your "from scratch" deliverables. To start, simply run
+### list features
 
-- `npm install`
-- `npm start`
+#### which components go with which features?
 
-## Available Scripts
+The API uses the 2 character ISO code to identify countries, which are saved in the `iso2` column of the database.
 
-In the project directory, you can run:
+##### identify state to track
 
-### `npm start`
+fetchCountries function in services folder gets list of countries from Supabase
+Add a loading state
+Use the network tab to examine (and debug) the request being sent to a server and the response received from a server
+Use the async/await pattern to get the list of countries & query that data using the Supabase Javascript client
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+use the `useEffect` hook to display the data (the list of countries).
+useEffect uses try/catch block to display an error when the API call fails
+Use useEffect hook with a dependency array to retrieve data when a component first mounts
+on load useEffect displays a list of countries
+Users should see a list of all the countries of the world with their flag this should allow users to filter by continent, and search by name. Allow users to query by country name, allow users to sort by name, filter by continent
+use the flagpedia API to load each country's flag
+Use useState to manage component state
+move useEffect & useState to useCountries component
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+###### list becomes "props"
 
-### `npm test`
+Note: if two siblings need the same state you need a callback
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+we appreciate backlink to <https://flagpedia.net>
 
-## The Golden Rule: 
+bootstrap [Create React App] (<https://github.com/facebook/create-react-app>).
 
-🦸 🦸‍♂️ `Stop starting and start finishing.` 🏁
+Countries of the World
+Use the React Base Template to start this deliverable. An example of the final product can be found [here](https://alchemy-react-countries.netlify.app/)
 
-If you work on more than one feature at a time, you are guaranteed to multiply your bugs and your anxiety.
+Learning Objectives
+Use useEffect hook with a dependency array to retrieve data when a component first mounts
+Use useState to manage component state
+Use custom hooks to bundle together multiple useState & useEffect calls
+Use the Supabase Javascript client to retrieve data from a database
+Use the network tab to examine (and debug) the request being sent to a server and the response received from a server
+Use the async/await pattern to make our asynchronous code easier to read
+Description
+There is a database provided to you that contains all the countries in the world. Your goal is to query that data using the Supabase Javascript client and then the `useEffect` hook to display the data. You should also use the flagpedia API to load each country's flag. The API uses the 2 character ISO code to identify countries which is saved in the `iso2` column of the database. Finally, your app should allow users to filter by continent, and search by name.
 
-## Making a plan in React
-1) Make a drawing of your app. Simple "wireframes" 
-1) Component Tree
-    1) Look at the drawing and break it down into Components. Label these Components explicitly (i.e., DogList, etc)
-    1) Draw a hierarchy (or tree) of components, describing which components are parents and which are children 
-    1) Looking at the drawing, make a list of your app's features. What should a user "be able to do" with this app?
-    1) Now look at your component tree: which components "go with" which features? Draw lines and make these connections explicitly.
-1) State
-    1) Look back at the drawing and your list of features and imagine using the app. What _state_ do you need to track? 
-    1) For each piece of state, ask: "When does it change?" If the answer is, "never", then it is not state.
-    1) Similarly, find all the 'events' (user clicks, form submit, on load etc) in your app. Ask one by one, "What state changes?" for each of these events. (This should feel like the the inverse of the previous step.)
-    1) Think about how to validate each of your state changes. How will I know if state changed in response to this event? (Hint: react dev tools or console.log usually helps here.)
-1) Data flow
-    1) Look at your hierarchy and ask: which components need access to which state? Another way to ask this is: for each component, what does this component need to "do its job?". This list becomes the "props" of the component.
-    1) If a child needs state from a parent, you will need to pass props. What will you name these props? 
-    1) Notice especially if two siblings need the same state: if so, you need a callback (i.e., debit card).
-1) Pick one feature from your list and build it out. Start with its parentmost component, and work down the component chain. Do not build another feature until this one is finished (and you can prove that it is finished by validating state change).
+Acceptance Criteria
+Must use the Supabase client to get the list of countries
+Must use the `useEffect` hook to call the service layer to get the list of countries
+Users should see a list of all the countries of the world with their flag
+Users should be able to filter by continent
+Rubric
+Required for grading: Main branch deployed to Netlify, and open PR from dev branch to Netlify with deploy preview
 
-## Additional considerations
-- Is any of your state redundant? For example, if you're tracking `wins`, `losses`, and `total`, you can probably get rid of `losses` state, and calculate it as `total - wins`.
-- Where should each piece of state live? How are you going to get data from where it lives to where it needs to be?
+Task Points
+`fetchCountries` function in services folder gets list of countries from Supabase 4
+useEffect correctly loads the list of countries when the `Main` component renders 4
+useEffect uses a try / catch block to display an error if the API call fails 4
+useEffect / useState moved into a custom useCountries component 4
+Users can filter by continent 4
+Stretch (up to 3 points)
+Add a loading state (+1)
+Allow users to query by country name (+1)
+Allow users to sort by name (+1)

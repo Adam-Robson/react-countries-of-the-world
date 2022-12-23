@@ -1,0 +1,24 @@
+main {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  flex-wrap: wrap;
+  background-image: url('../img/background.png');
+}
+
+.allCountries {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.countryContainer {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content:space-between;
+  text-align: center; */
+}
